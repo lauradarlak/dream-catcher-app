@@ -1,0 +1,15 @@
+<h2>Welcome to Dream Catcher</h2>
+<p>Please login or signup below:</p>
+
+<div>
+  <% if logged_in? %>
+
+    <a href="/logout"> Log Out </a>
+    <p>Welcome, <%=current_user.username %></p>
+
+  <% else %>
+    <a href="/signup">Sign Up</a>
+    <a href="/login"> Sign In </a>
+  <%end %>
+
+</div>
