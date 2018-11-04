@@ -1,7 +1,7 @@
 class DreamController < ApplicationController
   get '/dreams' do
     if logged_in?
-      @dreams = Dreams.all
+      @dreams = Dream.all
       erb :'dreams/dreams'
     else redirect '/'
     end
