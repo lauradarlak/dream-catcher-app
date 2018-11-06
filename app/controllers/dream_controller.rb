@@ -44,4 +44,36 @@ class DreamController < ApplicationController
     end
   end
 
+  # edit action
+
+  get '/dreams/:slug/edit' do
+    if logged_in?
+      @dream = Dream.find_by_slug(params[:slug])
+      if @dream && @dream.user == current_user
+        erb :'dream/edit_dream'
+      else
+        redirect '/dreams'
+      end
+    else
+      redirect '/'
+    end
+  end
+
+  patch '/dreams/:slug' do
+    if logged_in?
+      @dream = Dream.find_by_slug(params[:slug])
+      if @dream && @dream.user == current_user
+        if @dream.update
+          redirect "/dreams/#{@dream.slug}"
+        else
+          redirect "/dreams/#{@dream.slug}/edit"
+        end
+      else
+        redirect '/dreams'
+      end
+    else
+      redirect '/'
+    end
+  end
+
 end
