@@ -2,5 +2,12 @@
 
 <p><%=@dream.dream_details%></p>
 <%@dream.themes.each do |theme|%>
-<%=theme.name%>
+<p><%=theme.name%></p>
 <%end%>
+
+<form method="post" action="/dreams/<%=@dream.slug%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Dream">
+</form>
+
+<a href="/dreams/<%=@dream.slug%>/edit">Edit Dream</a>

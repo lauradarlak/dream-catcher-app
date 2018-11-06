@@ -3,9 +3,10 @@ class DreamController < ApplicationController
   # index action
   get '/dreams' do
     if logged_in?
-      @dreams = Dream.all
+      @dreams = current_user.dreams
       erb :'dreams/dreams'
-    else redirect '/'
+    else
+      redirect '/'
     end
   end
 
@@ -18,17 +19,14 @@ class DreamController < ApplicationController
     end
   end
 
-  get '/success' do
-    "SUCCESS!"
-  end
-
   post '/dreams' do
     if logged_in?
-      @dream = Dream.create(name: params[:name])
-      @dream.dream_details = params[:dream_details]
-      @dream.user = current_user
-      @dream.theme_ids = params[:themes]
+      @dream = current_user.dreams.build(params[:dream])
+      # @dream.dream_details = params[:dream_details]
+      # @dream.user_id = current_user.id
+      @dream.theme_ids = params[:theme_ids]
       @dream.save
+
       redirect "/dreams/#{@dream.slug}"
     else redirect '/dreams/new'
     end
@@ -72,6 +70,18 @@ class DreamController < ApplicationController
       end
     else
       redirect '/'
+    end
+  end
+
+  delete '/dreams/:slug/delete' do
+    if logged_in?
+      @dream = Dream.find_by_slug(params[:slug])
+      if @dream && @dream.user == current_user
+        @dream.delete
+      end
+      redirect to '/dreams'
+    else
+      redirect to '/'
     end
   end
 
