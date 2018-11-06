@@ -24,7 +24,7 @@ class DreamController < ApplicationController
       @dream = current_user.dreams.build(params[:dream])
       # @dream.dream_details = params[:dream_details]
       # @dream.user_id = current_user.id
-      @dream.theme_ids = params[:themes]
+      # @dream.theme_ids = params[:theme_ids]
       @dream.save
 
       redirect "/dreams/#{@dream.slug}"
