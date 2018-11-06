@@ -30,11 +30,20 @@ class DreamController < ApplicationController
       @dream.theme_ids = params[:themes]
       @dream.save
       if @dream.save
-        redirect '/success'
-      else redirect '/'
+        redirect "/dreams/#{@dream.slug}"
+      else redirect '/dreams/new'
       end
     end
+  end
 
+  # show action
+
+  get '/dreams/:slug' do
+    if logged_in?
+      @dream = Dream.find_by_slug(params[:slug])
+      erb :'dreams/show_dream'
+    else redirect '/'
+    end
   end
 
 
