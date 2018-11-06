@@ -1,4 +1,7 @@
 <%@dreams.each do |t|%>
   <%= t.name %>
   <%= t.user_id %>
+  <%t.themes.each do |t|%>
+    <%=t.name%>
+  <%end%>
 <%end%>
