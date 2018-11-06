@@ -33,7 +33,6 @@ class DreamController < ApplicationController
   end
 
   # show action
-
   get '/dreams/:slug' do
     if logged_in?
       @dream = Dream.find_by_slug(params[:slug])
@@ -43,7 +42,6 @@ class DreamController < ApplicationController
   end
 
   # edit action
-
   get '/dreams/:slug/edit' do
     if logged_in?
       @dream = Dream.find_by_slug(params[:slug])
@@ -61,9 +59,7 @@ class DreamController < ApplicationController
     if logged_in?
       @dream = Dream.find_by_slug(params[:slug])
       if @dream && @dream.user == current_user
-        @dream.update(dream_details: params[:dream_details])
-        @dream.theme_ids = params[:themes]
-        @dream.save
+        @dream.update(params["dream"])
         redirect "/dreams/#{@dream.slug}"
       else
         redirect '/dreams'

@@ -1,5 +1,5 @@
 <%@dreams.each do |t|%>
-  <%= t.name %>
+  <a href="/dreams/<%=t.slug%>"><%= t.name %></a>
   <%= t.user_id %>
   <%t.themes.each do |t|%>
     <%=t.name%>
