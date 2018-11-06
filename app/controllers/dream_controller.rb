@@ -22,6 +22,18 @@ class DreamController < ApplicationController
     "SUCCESS!"
   end
 
+  post '/dreams' do
+    if logged_in?
+      @dream = Dream.create(name: params[:name])
+      @dream.dream_details = params[:dream_details]
+      @dream.user = current_user
+      @dream.theme_ids = params[:themes]
+      @dream.save
+      redirect "/dreams/#{@dream.slug}"
+    else redirect '/dreams/new'
+    end
+  end
+
   # show action
 
   get '/dreams/:slug' do
@@ -31,21 +43,5 @@ class DreamController < ApplicationController
     else redirect '/'
     end
   end
-
-  post '/dreams' do
-    if logged_in?
-      @dream = Dream.create(name: params[:name])
-      @dream.dream_details = params[:dream_details]
-      @dream.user = current_user
-      @dream.theme_ids = params[:themes]
-      @dream.save
-      redirect "/dreams/#{@dream.slug}"
-      else redirect '/dreams/new'
-      end
-    end
-  end
-
-
-
 
 end

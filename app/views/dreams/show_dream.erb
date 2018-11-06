@@ -1,0 +1,6 @@
+<h2><%=@dream.name%></h2>
+
+<p><%=@dream.dream_details%></p>
+<%@dream.themes.each do |theme|%>
+<%=theme.name%>
+<%end%>
