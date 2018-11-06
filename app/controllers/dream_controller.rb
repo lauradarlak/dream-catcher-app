@@ -26,7 +26,9 @@ class DreamController < ApplicationController
       # @dream.user_id = current_user.id
       # @dream.theme_ids = params[:theme_ids]
       @dream.save
-
+      if !params[:theme][:name].empty?
+        @dream.themes << Theme.create(name: params[:theme][:name])
+      end
       redirect "/dreams/#{@dream.slug}"
     else redirect '/dreams/new'
     end
