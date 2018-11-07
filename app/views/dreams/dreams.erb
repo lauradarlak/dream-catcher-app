@@ -1,8 +1,9 @@
 
 <section class="pt-3">
   <h2 class="display-4 text-center"><%=current_user.username %>'s Dream Collection</h2>
+  <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
   <div class="card-deck pt-4">
-    <%@dreams.each do |dream|%>
+    <%all_dreams.each do |dream|%>
       <div class="card bg-light">
         <div class="card-header">
           <% if dream.dream_date %>
