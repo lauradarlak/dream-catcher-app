@@ -1,9 +1,16 @@
-<h2>Login to Dream Catcher</h2>
-
-<form method="POST" action="/login">
-  <label>Username:</label>
-  <input type="text" name="username">
-  <label>Password:</label>
-  <input type="password" name="password">
-  <input type="submit">
-</form>
+<main class="d-flex flex-column justify-content-center align-items-center" style="height: 75vh;">
+  <h2>Login to Dream Catcher</h2>
+  <div class="mt-4">
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" name="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <input type="submit" class="btn btn-info">
+    </form>
+  </div>
+</main>
