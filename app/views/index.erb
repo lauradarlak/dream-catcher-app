@@ -4,13 +4,13 @@
     <img src="../img/noun_Dreamcatcher.png" class="img-fluid d-block mx-auto mt-4" alt="Responsive image" width="250">
 
     <div class="text-center mt-4">
-      <p class="h5 pb-3">Please login or signup below</p>
+
       <% if logged_in? %>
 
-        <a class="btn btn-info" href="/logout"> Log Out </a>
-        <p>Welcome, <%=current_user.username %></p>
+        <h3>Hello, <%=current_user.username %>!</h3>
 
       <% else %>
+        <p class="h5 pb-3">Please login or signup below</p>
         <a class="btn btn-info mx-2" href="/signup">Sign Up</a>
         <a class="btn btn-info mx-2" href="/login"> Sign In </a>
       <%end %>
