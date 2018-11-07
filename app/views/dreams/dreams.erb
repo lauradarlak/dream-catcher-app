@@ -1,20 +1,25 @@
-<%@dreams.each do |t|%>
-  <a href="/dreams/<%=t.slug%>"><%= t.name %></a>
-  <%= t.user_id %>
-  <%t.themes.each do |t|%>
-    <%=t.name%>
-  <%end%>
-<%end%>
-<main>
-  <div class="card-deck">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+<main class="pt-5">
+  <h2 class="display-4 text-center"><%=current_user.username %>'s Dream Collection</h2>
+  <div class="card-deck pt-4">
+    <%@dreams.each do |dream|%>
+      <div class="card bg-light">
+        <div class="card-header">
+          <% if dream.dream_date %>
+            <small>Dream Date: <%=dream.dream_date.strftime("%m-%d-%Y")%></small>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= dream.name %></h5>
+          <p class="card-text"><%= dream.dream_details[0,350] %>...</p>
+          <p class="mb-0"><strong>Dream Themes</strong></p>
+          <%dream.themes.each do |theme|%>
+            <p class="d-inline mark"><%=theme.name%></p>
+          <%end%>
+          <br>
+          <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
+        </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
+    <%end%>
   </div>
 </main>

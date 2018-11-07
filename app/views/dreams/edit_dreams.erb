@@ -3,6 +3,8 @@
 <form method="post" action="/dreams/<%=@dream.slug%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <input type="text" name="dream[dream_details]" value="<%= @dream.dream_details %>">
+  <label for="inputDate" class="col-sm-2 col-form-label">Dream Date: </label>
+    <input type="date" name="dream[dream_date]" class="form-control" id="inputDate">
   <% Theme.all.each do |theme| %>
     <label><%= theme.name %></label>
     <input type="checkbox" name="dream[theme_ids][]" value="<%= theme.id %>" <%='checked' if @dream.themes.include?(theme) %>>
