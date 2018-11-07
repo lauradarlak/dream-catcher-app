@@ -1,4 +1,6 @@
-<h2> Edit Dream: <%= @dream.name %></h2>
+<section class="mx-5 pt-5">
+  <h2>Edit Dream: <%= @dream.name %></h2>
+  <hr>
 
 <form method="post" action="/dreams/<%=@dream.slug%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
@@ -12,3 +14,4 @@
 
   <input type="submit" value="submit">
 </form>
+</section>

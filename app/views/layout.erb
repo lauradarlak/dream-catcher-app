@@ -12,6 +12,20 @@
   </head>
   <body>
     <div class="container">
+      <% if logged_in? %>
+      <ul class="nav justify-content-end mt-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/dreams/new">Record a New Dream</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dreams">View Dream Collection</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+      <% end %>
+
       <%= yield %>
     </div>
 

@@ -1,5 +1,5 @@
 
-<main class="pt-5">
+<section class="pt-3">
   <h2 class="display-4 text-center"><%=current_user.username %>'s Dream Collection</h2>
   <div class="card-deck pt-4">
     <%@dreams.each do |dream|%>
@@ -16,10 +16,11 @@
           <%dream.themes.each do |theme|%>
             <p class="d-inline mark"><%=theme.name%></p>
           <%end%>
-          <br>
+        </div>
+        <div class="card-footer">
           <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
         </div>
       </div>
     <%end%>
   </div>
-</main>
+</section>
