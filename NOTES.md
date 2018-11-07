@@ -11,6 +11,10 @@ DreamTheme: dream_id, theme_id | belongs_to :dream; belongs_to :theme
 3. Develop User authentication
 4. CRUD routes
 
+o Create Theme index
+ o sort alpha and list dream names within each theme
+o Flash validations
+
 
 * BONUS *
 1. Scrape dream dictionary for theme data and save to database when a theme is added to the database

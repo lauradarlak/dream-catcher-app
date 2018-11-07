@@ -8,4 +8,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use DreamController
+use ThemeController
 run ApplicationController
