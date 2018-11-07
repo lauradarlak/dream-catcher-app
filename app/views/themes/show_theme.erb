@@ -1,0 +1,11 @@
+
+<section class="pt-5 w-75 mx-auto">
+  <h2><%= @theme.name %></h2>
+  <p>Total number of dreams with a <%= @theme.name %> theme: <%= @dream_theme_count %></p>
+  <p>When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
+  <% @theme.dreams.each do |dream| %>
+    <% @tot_theme = dream.themes.map do |theme| %>
+      <%= theme.name%>
+    <% end %>
+    
+  <% end %>

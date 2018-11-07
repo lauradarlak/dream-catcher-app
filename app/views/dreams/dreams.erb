@@ -15,7 +15,7 @@
           <p class="card-text"><%= dream.dream_details[0,350] %>...</p>
           <p class="mb-0"><strong>Dream Themes</strong></p>
           <%dream.themes.each do |theme|%>
-            <p class="d-inline mark"><%=theme.name%></p>
+            <p class="d-inline mark"><a href="/themes/<%=theme.slug%>"><%=theme.name%></a></p>
           <%end%>
         </div>
         <div class="card-footer">

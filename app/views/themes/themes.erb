@@ -1,0 +1,18 @@
+<section class="pt-5 w-75 mx-auto">
+  <h2>Dream Themes</h2>
+  <p class="lead">Select a dream theme to view theme details, or select an individual dream.</p>
+  <ul class="list-group list-group-flush">
+    <% all_themes = @themes.sort_by {|theme| theme.name} %>
+      <% all_themes.each do |theme| %>
+      <li class="list-group-item"><strong><a href="/themes/<%=theme.slug%>" class="h4"><%= theme.name %></a></strong>
+        <% if theme.dreams %>
+          <% theme.dreams.each do |dream| %>
+            <ul>
+              <li><a href="/dreams/<%=dream.slug%>" ><%= dream.name %></a></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </li>
+      <% end %>
+  </ul>
+</section>

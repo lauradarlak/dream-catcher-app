@@ -7,4 +7,10 @@ class Theme < ActiveRecord::Base
 
   extend Slugger::ClassMethods
   include Slugger::InstanceMethods
+
+  def shared_dreams
+    self.dreams.each do |dream|
+      dream.themes.reject{|theme| theme == @theme}.each{|theme| theme.name}
+    end
+  end
 end
