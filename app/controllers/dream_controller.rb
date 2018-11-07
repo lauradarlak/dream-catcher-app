@@ -25,6 +25,7 @@ class DreamController < ApplicationController
       # @dream.dream_details = params[:dream_details]
       # @dream.user_id = current_user.id
       # @dream.theme_ids = params[:theme_ids]
+      
       @dream.save
       if !params[:theme][:name].empty?
         @dream.themes << Theme.create(name: params[:theme][:name])
