@@ -3,9 +3,16 @@
   <h2><%= @theme.name %></h2>
   <p>Total number of dreams with a <%= @theme.name %> theme: <%= @dream_theme_count %></p>
   <p>When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
-  <% @theme.dreams.each do |dream| %>
-    <% @tot_theme = dream.themes.map do |theme| %>
-      <%= theme.name%>
+  <% @dname = [] %>
+  <% @theme.dreams.map do |dream| %>
+
+    <% dream.themes.map do |theme| %>
+
+      <%@dname << theme.name %>
+
     <% end %>
-    
+
   <% end %>
+  <% same_dream = @dname.uniq.reject{|theme| theme == @theme.name } %>
+  <%= same_dream.join(", ") %>
+</section>
