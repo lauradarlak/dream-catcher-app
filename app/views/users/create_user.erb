@@ -1,5 +1,10 @@
 <section class="d-flex flex-column justify-content-center align-items-center" style="height: 75vh;">
   <h2>Create a Dream Catcher Account</h2>
+  <% if flash.has?(:signup_message) %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:signup_message] %>
+  </div>
+  <% end %>
   <div class="mt-4">
     <form method="POST" action="/signup" class="form-inline">
       <div class="form-group">

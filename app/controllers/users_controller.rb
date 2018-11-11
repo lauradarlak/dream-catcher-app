@@ -3,13 +3,22 @@ class UsersController < ApplicationController
   get '/signup' do
     if !logged_in?
       erb :'users/create_user'
-    else redirect '/dreams'
+    else
+      redirect '/dreams'
     end
   end
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      flash[:signup_message] = "Please fill out all required fields: Username, Email, and Password"
       redirect '/signup'
+    end
+    if !User.new(:username => params[:username], :password => params[:password]).valid?
+      flash[:signup_message] ="Username is already taken, please select a different username."
+      redirect to 'signup'
+    elsif !User.new(:email => params[:email], :password => params[:password]).valid?
+      flash[:signup_message] ="That email address is already taken. Please try to login."
+      redirect to 'signup'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -31,7 +40,9 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/dreams'
-    else redirect '/signup'
+    else
+      flash[:login_message] = "Your username and password is incorrect. Please try again."
+      redirect '/login'
     end
   end
 
