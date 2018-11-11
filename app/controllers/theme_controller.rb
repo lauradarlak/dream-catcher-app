@@ -7,6 +7,7 @@ class ThemeController < ApplicationController
       @themes = current_user.themes.uniq
       erb :'themes/themes'
     else
+      flash[:index_message] = "Signup or login to access dream themes."
       redirect '/'
     end
   end
@@ -17,9 +18,11 @@ class ThemeController < ApplicationController
       if current_user.themes.include?(@theme)
         erb :'themes/show_theme'
       else
+        flash[:themes_index_message] = "You have never dreamed about this theme. Select a different theme."
         redirect '/themes'
       end
     else
+      flash[:index_message] = "Sign up or login to access dream themes."
       redirect '/'
     end
   end

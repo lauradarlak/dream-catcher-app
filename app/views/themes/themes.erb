@@ -1,6 +1,11 @@
 <section class="pt-5 w-75 mx-auto">
   <h2>Dream Themes</h2>
   <p class="lead">Select a dream theme to view theme details, or select an individual dream.</p>
+  <% if flash.has?(:themes_index_message) %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:themes_index_message] %>
+  </div>
+  <% end %>
   <ul class="list-group list-group-flush">
     <% all_themes = @themes.sort_by {|theme| theme.name} %>
       <% all_themes.each do |theme| %>
