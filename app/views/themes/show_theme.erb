@@ -1,13 +1,9 @@
-
-
 <section class="pt-5 w-75 mx-auto">
-  <h2>Dream Theme: <%= @theme.name %></h2>
-  <h4>When you dreamed about <%= @theme.name %>, you also dreamed about:</h4>
-
-  <ul class="list-group list-group-flush">
-    <% collab.each do |theme| %>
-      <li><%=theme%></li>
-    <% end %>
-  </ul>
-
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Dream Theme: <%= @theme.name %></h2>
+      <p class="card-text lead">When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
+      <p><%= collab %></p>
+    </div>
+  </div>
 </section>
