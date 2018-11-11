@@ -6,12 +6,22 @@ class ThemeController < ApplicationController
     if logged_in?
       @themes = current_user.themes.uniq
       erb :'themes/themes'
+    else
+      redirect '/'
     end
   end
 
   get '/themes/:slug' do
-    @theme = Theme.find_by_slug(params[:slug])
-    erb :'themes/show_theme'
+    if logged_in?
+      @theme = Theme.find_by_slug(params[:slug])
+      if current_user.themes.include?(@theme)
+        erb :'themes/show_theme'
+      else
+        redirect '/themes'
+      end
+    else
+      redirect '/'
+    end
   end
 
   helpers do
