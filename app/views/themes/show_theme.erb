@@ -2,8 +2,14 @@
   <div class="card">
     <div class="card-body">
       <h2 class="card-title">Dream Theme: <%= @theme.name %></h2>
+
+
       <p class="card-text lead">When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
-      <p><%= collab %></p>
+      <% if collab.empty? %>
+        <p class="card-text lead">Your <%= @theme.name %> dreams do not contain any other themes.</p>
+      <% else %>
+        <p><%= collab %></p>
+      <% end %>
     </div>
   </div>
 </section>
