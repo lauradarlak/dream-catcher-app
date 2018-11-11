@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
 
   extend Slugger::ClassMethods
   include Slugger::InstanceMethods
+
 end

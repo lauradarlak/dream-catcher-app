@@ -1,18 +1,13 @@
 
+
 <section class="pt-5 w-75 mx-auto">
-  <h2><%= @theme.name %></h2>
-  <p>Total number of dreams with a <%= @theme.name %> theme: <%= @dream_theme_count %></p>
-  <p>When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
-  <% @dname = [] %>
-  <% @theme.dreams.map do |dream| %>
+  <h2>Dream Theme: <%= @theme.name %></h2>
+  <h4>When you dreamed about <%= @theme.name %>, you also dreamed about:</h4>
 
-    <% dream.themes.map do |theme| %>
-
-      <%@dname << theme.name %>
-
+  <ul class="list-group list-group-flush">
+    <% collab.each do |theme| %>
+      <li><%=theme%></li>
     <% end %>
+  </ul>
 
-  <% end %>
-  <% same_dream = @dname.uniq.reject{|theme| theme == @theme.name } %>
-  <%= same_dream.join(", ") %>
 </section>
