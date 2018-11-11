@@ -1,6 +1,9 @@
+require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
 
   configure do
+    use Rack::Flash
     # stylesheets and imgs dirs
     set :public_folder, 'public'
     set :views, 'app/views'
