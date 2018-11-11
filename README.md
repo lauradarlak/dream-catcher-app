@@ -12,3 +12,11 @@ Dream Catcher is a CRUD, Model-View-Controller application using Sinatra. This a
 ```
 rake db:migrate
 ```
+For testing, seed data is provide and accessible via `rake db:seed`
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/lauradarlak/dream-catcher-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+This project is licensed under the terms of the [MIT License] (https://opensource.org/licenses/MIT).
