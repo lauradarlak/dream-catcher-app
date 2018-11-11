@@ -6,6 +6,7 @@ class DreamController < ApplicationController
       @dreams = current_user.dreams
       erb :'dreams/dreams'
     else
+      flash[:index_message] = "Signup or login to access dreams."
       redirect '/'
     end
   end
@@ -15,23 +16,25 @@ class DreamController < ApplicationController
     if logged_in?
       @dreams = Dream.all
       erb :'dreams/create_dream'
-    else redirect '/'
+    else
+      flash[:index_message] = "Signup or login to create a new dream."
+      redirect '/'
     end
   end
 
   post '/dreams' do
     if logged_in?
-      @dream = current_user.dreams.build(params[:dream])
-      # @dream.dream_details = params[:dream_details]
-      # @dream.user_id = current_user.id
-      # @dream.theme_ids = params[:theme_ids]
-      
-      @dream.save
-      if !params[:theme][:name].empty?
-        @dream.themes << Theme.create(name: params[:theme][:name])
+      if Dream.new(params[:dream]).valid?
+        @dream = current_user.dreams.build(params[:dream])
+        @dream.save
+        if !params[:theme][:name].empty?
+          @dream.themes << Theme.create(name: params[:theme][:name])
+        end
+        redirect "/dreams/#{@dream.slug}"
+      else
+        flash[:new_dream] = "Sorry, but that dream name is already taken, please select another name."
+        redirect '/dreams/new'
       end
-      redirect "/dreams/#{@dream.slug}"
-    else redirect '/dreams/new'
     end
   end
 
@@ -39,8 +42,14 @@ class DreamController < ApplicationController
   get '/dreams/:slug' do
     if logged_in?
       @dream = Dream.find_by_slug(params[:slug])
-      erb :'dreams/show_dream'
-    else redirect '/'
+      if @dream && @dream.user == current_user
+        erb :'dreams/show_dream'
+      else
+        redirect '/dreams'
+      end
+    else
+      flash[:index_message] = "Sign up or login to access dreams."
+      redirect '/'
     end
   end
 
@@ -51,6 +60,7 @@ class DreamController < ApplicationController
       if @dream && @dream.user == current_user
         erb :'dreams/edit_dreams'
       else
+        flash[:dream_index] = "You cannot edit a dream that does not belong to you."
         redirect '/dreams'
       end
     else
@@ -65,6 +75,7 @@ class DreamController < ApplicationController
         @dream.update(params["dream"])
         redirect "/dreams/#{@dream.slug}"
       else
+        flash[:dream_index] = "You cannot edit a dream that does not belong to you."
         redirect '/dreams'
       end
     else
@@ -77,6 +88,7 @@ class DreamController < ApplicationController
       @dream = Dream.find_by_slug(params[:slug])
       if @dream && @dream.user == current_user
         @dream.delete
+        redirect to '/dreams'
       end
       redirect to '/dreams'
     else

@@ -1,6 +1,13 @@
 
 <section class="pt-3">
   <h2 class="display-4 text-center"><%=current_user.username %>'s Dream Collection</h2>
+
+  <% if flash.has?(:dream_index) %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:dream_index] %>
+  </div>
+  <% end %>
+  
   <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
   <div class="row">
     <%all_dreams.each do |dream|%>
