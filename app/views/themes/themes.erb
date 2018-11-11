@@ -7,9 +7,11 @@
       <li class="list-group-item"><strong><a href="/themes/<%=theme.slug%>" class="h4"><%= theme.name %></a></strong>
         <% if theme.dreams %>
           <% theme.dreams.each do |dream| %>
+            <% if current_user.dreams.include?(dream) %>
             <ul>
               <li><a href="/dreams/<%=dream.slug%>" ><%= dream.name %></a></li>
             </ul>
+            <% end %>
           <% end %>
         <% end %>
       </li>

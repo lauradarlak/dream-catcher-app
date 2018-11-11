@@ -2,26 +2,30 @@
 <section class="pt-3">
   <h2 class="display-4 text-center"><%=current_user.username %>'s Dream Collection</h2>
   <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
-  <div class="card-deck pt-4">
+  <div class="row">
     <%all_dreams.each do |dream|%>
-      <div class="card bg-light">
-        <div class="card-header">
-          <% if dream.dream_date %>
-            <small>Dream Date: <%=dream.dream_date.strftime("%m-%d-%Y")%></small>
-          <% end %>
+    <div class="col-6 pt-4">
+        <div class="card bg-light h-100">
+          <div class="card-header">
+            <% if dream.dream_date %>
+              <small>Dream Date: <%=dream.dream_date.strftime("%m-%d-%Y")%></small>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= dream.name %></h5>
+            <p class="card-text"><%= dream.dream_details[0,350] %>...</p>
+            <p class="mb-0"><strong>Dream Themes</strong></p>
+            <%dream.themes.each do |theme|%>
+              <p class="d-inline mark"><a href="/themes/<%=theme.slug%>"><%=theme.name%></a></p>
+            <%end%>
+          </div>
+          <div class="card-footer">
+            <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
+          </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= dream.name %></h5>
-          <p class="card-text"><%= dream.dream_details[0,350] %>...</p>
-          <p class="mb-0"><strong>Dream Themes</strong></p>
-          <%dream.themes.each do |theme|%>
-            <p class="d-inline mark"><a href="/themes/<%=theme.slug%>"><%=theme.name%></a></p>
-          <%end%>
-        </div>
-        <div class="card-footer">
-          <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
-        </div>
-      </div>
+    
+    </div>
     <%end%>
   </div>
+  
 </section>

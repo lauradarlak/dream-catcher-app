@@ -3,8 +3,10 @@ require_relative '../models/theme.rb'
 class ThemeController < ApplicationController
 
   get '/themes' do
-    @themes = Theme.all
-    erb :'themes/themes'
+    if logged_in?
+      @themes = current_user.themes.uniq
+      erb :'themes/themes'
+    end
   end
 
   get '/themes/:slug' do
