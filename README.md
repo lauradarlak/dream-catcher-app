@@ -12,7 +12,7 @@ Dream Catcher is a CRUD, Model-View-Controller application using Sinatra. This a
 ```
 rake db:migrate
 ```
-For testing, seed data is provide and accessible via `rake db:seed`
+For testing, seed data is provided and accessible via `rake db:seed`
 
 ## Contributing
 
