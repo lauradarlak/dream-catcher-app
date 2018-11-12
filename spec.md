@@ -2,7 +2,12 @@
 
 Specs:
 - [x] Use Sinatra to build the app
+  - Sinatra specified as a dependency in the project's Gemfile
+  - `Bundler.require` in config/environment.rb requires all gems, including Sinatra
+  - Sinatra methods are used to create HTTP routes and manage requests
 - [x] Use ActiveRecord for storing information in a database
+  - `Bundler.require` in config/environment.rb requires all gem dependencies specified in Gemfile, including `activerecord`, `sinatra-activerecord`, and `rake`
+  -
 - [x] Include more than one model class (e.g. User, Post, Category)
 - [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
 - [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
