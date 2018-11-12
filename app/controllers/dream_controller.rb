@@ -73,6 +73,9 @@ class DreamController < ApplicationController
       @dream = Dream.find_by_slug(params[:slug])
       if @dream && @dream.user == current_user
         @dream.update(params["dream"])
+        if !params[:theme][:name].empty?
+          @dream.themes << Theme.create(name: params[:theme][:name])
+        end
         redirect "/dreams/#{@dream.slug}"
       else
         flash[:dream_index] = "You cannot edit a dream that does not belong to you."
