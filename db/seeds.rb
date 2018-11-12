@@ -7,8 +7,8 @@ Theme.create(name: 'Giant')
 Theme.create(name: 'Laughing')
 Theme.create(name: 'Telepathy')
 
-User.create(username: dream_machine, email: dream_machine@email.com, password: dream_machine)
-User.create(username: laura, email: laura@email.com, password: laura)
+User.create(username: 'dream_machine', email: 'dream_machine@email.com', password: 'dream_machine')
+User.create(username: 'laura', email: 'laura@email.com', password: 'laura')
 
 Dream.create(name: "Dog Chase", dream_date: "2018-11-01", user_id: 1, dream_details: "Curabitur turpis. In turpis. Fusce fermentum odio nec arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Sed a libero.
 
