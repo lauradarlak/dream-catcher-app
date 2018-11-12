@@ -83,6 +83,8 @@ class DreamController < ApplicationController
     end
   end
 
+  # delete action
+
   delete '/dreams/:slug/delete' do
     if logged_in?
       @dream = Dream.find_by_slug(params[:slug])
