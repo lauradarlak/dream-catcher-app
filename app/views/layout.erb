@@ -11,24 +11,33 @@
     <title>Dream Catcher App</title>
   </head>
   <body>
-    <div class="container">
-      <% if logged_in? %>
-      <ul class="nav justify-content-end mt-3">
-        <li class="nav-item">
-          <a class="nav-link" href="/dreams/new">Record a New Dream</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/dreams">View Dream Collection</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/themes">View Dream Themes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-      </ul>
-      <% end %>
+    <% if logged_in? %>
+    <nav class="navbar navbar-expand-lg navbar-light px-5 py-3" style="background-color: #17a2b875;">
+      <a class="navbar-brand" href="/">Dream Catcher</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link " href="/dreams/new">Record a New Dream</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Welcome, <%=current_user.username%>!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="nav-link" href="/dreams">Dream Collection</a>
+              <a class="nav-link" href="/themes">Dream Themes</a>
+              <a class="nav-link" href="/logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
+    <% end %>
+    <div class="container">
       <%= yield %>
     </div>
 
