@@ -10,14 +10,14 @@
         <h3>Hello, <%=current_user.username %>!</h3>
 
       <% else %>
-        <p class="h5 pb-3">Please login or signup below</p>
+        <p class="h5 pb-3">Please Sign Up or Login below</p>
         <% if flash.has?(:index_message) %>
         <div class="alert alert-warning" role="alert">
           <%= flash[:index_message] %>
         </div>
         <% end %>
         <a class="btn btn-info mx-2" href="/signup">Sign Up</a>
-        <a class="btn btn-info mx-2" href="/login"> Sign In </a>
+        <a class="btn btn-info mx-2" href="/login">Login</a>
       <%end %>
 
     </div>

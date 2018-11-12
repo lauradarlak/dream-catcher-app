@@ -32,7 +32,7 @@ class DreamController < ApplicationController
         end
         redirect "/dreams/#{@dream.slug}"
       else
-        flash[:new_dream] = "Sorry, but that dream name is already taken, please select another name."
+        flash[:new_dream] = "Please name your dream."
         redirect '/dreams/new'
       end
     end

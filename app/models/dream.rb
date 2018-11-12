@@ -5,7 +5,7 @@ class Dream < ActiveRecord::Base
   has_many :dream_themes
   has_many :themes, through: :dream_themes
 
-  validates :name, uniqueness: { case_sensitive: false }
+ validates :name, presence: true
 
   extend Slugger::ClassMethods
   include Slugger::InstanceMethods
