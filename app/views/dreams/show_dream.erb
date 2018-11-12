@@ -7,7 +7,7 @@
       <% end %>
       <p class="card-text"><%=@dream.dream_details%></p>
       <%@dream.themes.each do |theme|%>
-        <span class="card-text px-1"><%=theme.name%></span>
+        <span class="card-text px-1"><a href="/themes/<%=theme.slug%>"><%=theme.name%></a></span>
       <%end%>
       <div class="mt-3">
         <a href="/dreams/<%=@dream.slug%>/edit" class="btn btn-info">Edit Dream</a>
