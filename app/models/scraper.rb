@@ -10,9 +10,9 @@ class Scraper
     themes.css("div.content div.single p").each do |theme|
 
 
-      if theme.css("strong").text.strip.upcase.include?(theme_name.upcase)
+      if theme.css("strong").text.chomp(':').upcase.include?(theme_name.chomp('s').upcase)
         @theme_interpretation = theme.text.strip
-      
+
       end
     end
 

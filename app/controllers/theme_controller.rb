@@ -58,7 +58,9 @@ class ThemeController < ApplicationController
       theme_name = theme.name
         if Scraper.theme_content(theme_name) != nil
           theme.description = Scraper.theme_content(theme_name)
-          
+          theme.save
+
+
         else
           "Can't Find!"
         end
