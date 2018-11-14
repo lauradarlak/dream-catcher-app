@@ -10,6 +10,7 @@
     <% all_themes = @themes.sort_by {|theme| theme.name} %>
       <% all_themes.each do |theme| %>
       <li class="list-group-item"><strong><a href="/themes/<%=theme.slug%>" class="h4"><%= theme.name %></a></strong>
+        
         <% if theme.dreams %>
           <% theme.dreams.each do |dream| %>
             <% if current_user.dreams.include?(dream) %>

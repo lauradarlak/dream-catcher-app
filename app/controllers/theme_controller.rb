@@ -16,6 +16,7 @@ class ThemeController < ApplicationController
     if logged_in?
       @theme = Theme.find_by_slug(params[:slug])
       if current_user.themes.include?(@theme)
+        theme_find(@theme)
         erb :'themes/show_theme'
       else
         flash[:themes_index_message] = "You have never dreamed about this theme. Select a different theme."
@@ -51,6 +52,16 @@ class ThemeController < ApplicationController
         array[-1] = "and #{array[-1]}"
         return array.join(", ")
       end
+    end
+
+    def theme_find(theme)
+      theme_name = theme.name
+        if Scraper.theme_content(theme_name) != nil
+          theme.description = Scraper.theme_content(theme_name)
+          
+        else
+          "Can't Find!"
+        end
     end
   end
 end

@@ -31,6 +31,7 @@ class DreamController < ApplicationController
           @dream.themes << Theme.create(name: params[:theme][:name])
         end
         redirect "/dreams/#{@dream.slug}"
+
       else
         flash[:new_dream] = "Please name your dream."
         redirect '/dreams/new'

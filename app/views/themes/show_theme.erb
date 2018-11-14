@@ -2,6 +2,11 @@
   <div class="card">
     <div class="card-body">
       <h2 class="card-title">Dream Theme: <%= @theme.name %></h2>
+      <% if !@theme.description %>
+        <p>Can't Find!</p>
+      <% else %>
+        <p><%= @theme.description %></p>
+      <% end %>
 
 
       <p class="card-text lead">When you dreamed about <%= @theme.name %>, you also dreamed about:</p>
