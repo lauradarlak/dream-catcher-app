@@ -30,6 +30,13 @@ class DreamController < ApplicationController
         if !params[:theme][:name].empty?
           @dream.themes << Theme.create(name: params[:theme][:name])
         end
+        @dream.themes.each do |theme|
+          binding.pry
+          if !theme.description
+            Theme.theme_find(theme)
+          end
+
+        end
         redirect "/dreams/#{@dream.slug}"
 
       else
