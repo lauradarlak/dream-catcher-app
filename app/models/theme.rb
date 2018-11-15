@@ -37,6 +37,7 @@ class Theme < ActiveRecord::Base
 
   def self.theme_find(theme)
     theme_name = theme.name
+  
       if Scraper.theme_content(theme_name) != nil
         theme.description = Scraper.theme_content(theme_name)
         theme.save

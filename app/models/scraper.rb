@@ -8,14 +8,10 @@ class Scraper
 
     themes = Nokogiri::HTML(open("https://www.dreamdictionary.org/#{theme_letter}"))
     themes.css("div.content div.single p").each do |theme|
-
-
-      if theme.css("strong").text.chomp(':').upcase.include?(theme_name.chomp('s').upcase)
+      if theme.css("strong").text.chomp(': ').upcase == theme_name.chomp('s').upcase || theme.css("b").text.chomp(': ').upcase == theme_name.chomp('s').upcase
         @theme_interpretation = theme.text.strip
-
       end
     end
-
     @theme_interpretation
   end
 end
