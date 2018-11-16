@@ -26,22 +26,15 @@ class DreamController < ApplicationController
     if logged_in?
       if Dream.new(params[:dream]).valid?
         @dream = current_user.dreams.build(params[:dream])
-        @dream.save
+        # @dream.save
         if !params[:theme][:name].empty?
           @dream.themes << Theme.create(name: params[:theme][:name])
-          @dream.save
         end
-        @dream.themes.each do |theme|
-  
-          if !theme.description
-            Theme.theme_find(theme)
-          end
-
-        end
+        @dream.save
+        assign_theme_description(@dream)
         redirect "/dreams/#{@dream.slug}"
-
       else
-        flash[:new_dream] = "Please name your dream."
+        flash[:new_dream] = "Please provide a Dream Name and Dream Date."
         redirect '/dreams/new'
       end
     end
@@ -85,6 +78,7 @@ class DreamController < ApplicationController
         if !params[:theme][:name].empty?
           @dream.themes << Theme.create(name: params[:theme][:name])
         end
+        assign_theme_description(@dream)
         redirect "/dreams/#{@dream.slug}"
       else
         flash[:dream_index] = "You cannot edit a dream that does not belong to you."
@@ -107,6 +101,16 @@ class DreamController < ApplicationController
       redirect to '/dreams'
     else
       redirect to '/'
+    end
+  end
+
+  helpers do
+    def assign_theme_description(dream)
+      dream.themes.each do |theme|
+        if !theme.description
+          Theme.theme_find(theme)
+        end
+      end
     end
   end
 

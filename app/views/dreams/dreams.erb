@@ -7,8 +7,9 @@
     <%= flash[:dream_index] %>
   </div>
   <% end %>
-  
+
   <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
+  
   <div class="row">
     <%all_dreams.each do |dream|%>
     <div class="col-6 pt-4">
@@ -30,9 +31,9 @@
             <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
           </div>
         </div>
-    
+
     </div>
     <%end%>
   </div>
-  
+
 </section>
