@@ -9,7 +9,26 @@
   <% end %>
 
   <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
-  
+
+  <div class="list-group-flush">
+    <%all_dreams.each do |dream|%>
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= dream.name %></h5>
+        <% if dream.dream_date %>
+          <small>Dream Date: <%=dream.dream_date.strftime("%m-%d-%Y")%></small>
+        <% end %>
+      </div>
+      <p class="mb-1"><%= dream.dream_details[0,350] %>...</p>
+      <small>Themes:
+      <%dream.themes.each do |theme|%>
+       <a class="d-inline" href="/themes/<%=theme.slug%>"><%=theme.name%></a>
+      <% end %>
+      </small>
+    </a>
+    <%end%>
+  </div>
+
   <div class="row">
     <%all_dreams.each do |dream|%>
     <div class="col-6 pt-4">
