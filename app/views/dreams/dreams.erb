@@ -10,9 +10,9 @@
 
   <% all_dreams = @dreams.sort_by {|dream| dream.dream_date}.reverse %>
 
-  <div class="list-group-flush">
+  <div class="list-group-flush w-75 mx-auto mt-3">
     <%all_dreams.each do |dream|%>
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <li class="list-group-item list-group-item-action flex-column align-items-start py-4">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= dream.name %></h5>
         <% if dream.dream_date %>
@@ -21,11 +21,14 @@
       </div>
       <p class="mb-1"><%= dream.dream_details[0,350] %>...</p>
       <small>Themes:
-      <%dream.themes.each do |theme|%>
-       <a class="d-inline" href="/themes/<%=theme.slug%>"><%=theme.name%></a>
-      <% end %>
+        <%dream.themes.each do |theme|%>
+        <a class="d-inline" href="/themes/<%=theme.slug%>"><%=theme.name%></a>
+        <% end %>
       </small>
-    </a>
+      <div class="card-footer pl-0">
+        <a href="/dreams/<%=dream.slug%>" class="btn btn-info mt-3">Visit Dream</a>
+      </div>
+    </li>
     <%end%>
   </div>
 
