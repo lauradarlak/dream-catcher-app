@@ -39,18 +39,8 @@ class ThemeController < ApplicationController
       end
       corrected_themes = @all_themes.uniq.reject{|theme| theme == @theme.name }
 
-      oxford_comma(corrected_themes)
+      Theme.oxford_comma(corrected_themes)
     end
 
-    def oxford_comma(array)
-      if array.length == 1
-        return "#{array[0]}"
-      elsif array.length == 2
-        return array.join(" and ")
-      elsif array.length >= 3
-        array[-1] = "and #{array[-1]}"
-        return array.join(", ")
-      end
-    end
   end
 end
