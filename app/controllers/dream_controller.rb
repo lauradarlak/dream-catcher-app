@@ -2,13 +2,9 @@ class DreamController < ApplicationController
 
   # index action
   get '/dreams' do
-    if logged_in?
-      @dreams = current_user.dreams
-      erb :'dreams/dreams'
-    else
-      flash[:index_message] = "Signup or login to access dreams."
-      redirect '/'
-    end
+    redirect_if_not_loggedin
+    @dreams = current_user.dreams
+    erb :'dreams/dreams'
   end
 
   # new action

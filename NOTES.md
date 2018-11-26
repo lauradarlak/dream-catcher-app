@@ -19,3 +19,8 @@ o Flash validations
 * BONUS *
 1. Scrape dream dictionary for theme data and save to database when a theme is added to the database
 2.
+
+* Assessment Notes *
+- incorporate if_loggedin helper
+- take a closer look at nested conditionals
+- nested hash in create dream form, will learn more in rails about handling this
